@@ -1,0 +1,5 @@
+#!/bin/bash
+# do_update - does the normal apt update & upgrade on nodes
+sudo apt-get update
+sudo apt-get dist-upgrade -y
+

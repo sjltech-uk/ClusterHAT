@@ -1,0 +1,15 @@
+#!/bin/bash
+# chk_mounts - checks required mounted file system is mounted on nodes
+PREFIX=CLUSTER-
+SUFFIX=${1}
+MOUNTPOINT=${PREFIX}${SUFFIX}
+mount | grep ${MOUNTPOINT} &>/dev/null 
+#mount | grep ${MOUNTPOINT} 
+RC=$?
+if [ ${RC} -eq 0 ]
+then
+  echo "${MOUNTPOINT} is mounted"
+else
+  echo "ERROR: ${MOUNTPOINT} not mounted !"
+  exit 2
+fi
