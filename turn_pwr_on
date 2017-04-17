@@ -1,4 +1,5 @@
 #!/bin/bash
+# turn_pwr_on - turns power on to all nodes
 NUMNODES=${CHAT_NODES}
 alert_led on
 GPID=22

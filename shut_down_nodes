@@ -1,4 +1,5 @@
 #!/bin/bash
+# shut_down_nodes - shuts down nodes cleanly then powers them off
 PREFIX=${CHAT_NODE_PREFIX}
 NUMNODES=${CHAT_NODES}
 I=1

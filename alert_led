@@ -1,4 +1,5 @@
 #!/bin/bash
+# alert_led - set alert LED on or off
 if [ "$1" = "on" ]
 then
     #echo "alert_led on"

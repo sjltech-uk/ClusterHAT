@@ -1,4 +1,5 @@
 #!/bin/bash
+# setup.sh - basis of a setup system, very much still WIP
 CHKLIST=manifest.txt
 function check_files() {
 for i in `cat ${CHKLIST}`

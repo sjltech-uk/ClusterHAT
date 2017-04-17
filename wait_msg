@@ -1,4 +1,5 @@
 #!/bin/bash
+# wait_msg - display a moving dot for a duration whilst waiting for long ops
 echo "waiting for services to come up"
 CTR=1
 if [ "$1." = "." ]

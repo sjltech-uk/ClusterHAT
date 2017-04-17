@@ -1,4 +1,5 @@
 #!/bin/bash
+# setupenv.sh - another WIP to setup environment for the system to work
 
 # Menu
 echo "==================================="

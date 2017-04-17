@@ -1,4 +1,5 @@
 #!/bin/bash
+# clusterctl - the glorious menu system
 clear
 CTRLR=clusterctl
 echo "==============================================================="

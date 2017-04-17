@@ -1,4 +1,5 @@
 #!/bin/bash
+# sw_update - calls update script on all nodes
 PREFIX=${CHAT_NODE_PREFIX}
 NUMNODES=${CHAT_NODES}
 SUFFIX=${CHAT_NO}

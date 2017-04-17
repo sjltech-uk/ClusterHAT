@@ -1,4 +1,5 @@
 #!/bin/bash
+# chk_ssh - check we can connect to ssh on the nodes
 PREFIX=${CHAT_NODE_PREFIX}
 NUMNODES=${CHAT_NODES}
 WANTED=$1

@@ -1,4 +1,5 @@
 #!/bin/bash
+# turn_pwr_off - turns power off to nodes
 NUMNODES=${CHAT_NODES}
 alert_led on
 GPID=22

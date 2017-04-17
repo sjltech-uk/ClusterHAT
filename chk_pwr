@@ -1,4 +1,5 @@
 #!/bin/bash
+# chk_pwr - check power state on attached nodes
 NUMNODES=${CHAT_NODES}
 alert_led on
 GPID=22

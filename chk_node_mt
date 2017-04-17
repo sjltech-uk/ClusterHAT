@@ -1,4 +1,5 @@
 #!/bin/bash
+# chk_node_mt - not entirely sure why I wrote this one !
 PREFIX=${CHAT_NODE_PREFIX}
 NUMNODES=${CHAT_NODES}
 SUFFIX=${CHAT_NO}

@@ -1,1 +1,2 @@
+# restore-bin - simple rsync restore command
 rsync -avzh pi@rpi-dsrv.local:/mnt/250GB/clusterhat/controller/bin/* /home/pi/bin/

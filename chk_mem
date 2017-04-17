@@ -1,4 +1,5 @@
 #!/bin/bash
+# chk_mem - check and report memory on nodes
 PREFIX=${CHAT_NODE_PREFIX}
 NUMNODES=${CHAT_NODES}
 PORT=1

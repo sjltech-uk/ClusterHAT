@@ -1,4 +1,5 @@
 #!/bin/bash
+# start_nfs - make sure NFS services are started
 echo "starting NFS services..."
 echo -n "rpcbind..."
 sudo service rpcbind start
