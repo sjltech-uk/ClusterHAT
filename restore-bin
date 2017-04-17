@@ -1,0 +1,1 @@
+rsync -avzh pi@rpi-dsrv.local:/mnt/250GB/clusterhat/controller/bin/* /home/pi/bin/

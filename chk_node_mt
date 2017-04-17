@@ -1,0 +1,18 @@
+#!/bin/bash
+PREFIX=${CHAT_NODE_PREFIX}
+NUMNODES=${CHAT_NODES}
+SUFFIX=${CHAT_NO}
+CLUSTBIN=/mnt/CLUSTER-${SUFFIX}/bin
+PORT=1
+DELAY=0
+echo "checking node mounting"
+
+until [ $PORT -gt "$NUMNODES" ]
+do
+    HOST=${PREFIX}${PORT}
+    echo -n "checking ${HOST} : "
+    ssh pi@${HOST} ${CLUSTBIN}/chk_mounts ${SUFFIX}
+    sleep ${DELAY}
+    ((PORT++))
+done
+echo "checks are complete"

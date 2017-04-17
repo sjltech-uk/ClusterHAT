@@ -1,0 +1,20 @@
+#!/bin/bash
+NUMNODES=${CHAT_NODES}
+alert_led on
+GPID=22
+PORT=1
+if [ "$1." = "." ]
+then
+    echo "checking power status"
+else
+    echo "checking power state = $1"
+fi
+until [ $PORT -gt "$NUMNODES" ]
+do
+    echo -n "checking P${PORT} ${GPID} = "
+    gpio read ${GPID}
+    ((GPID++))
+   #  sleep 1
+    ((PORT++))
+    done
+alert_led off

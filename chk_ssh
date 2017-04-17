@@ -1,0 +1,56 @@
+#!/bin/bash
+PREFIX=${CHAT_NODE_PREFIX}
+NUMNODES=${CHAT_NODES}
+WANTED=$1
+UP=0
+DOWN=0
+alert_led on
+if [ "${WANTED}." = "." ]
+then
+    echo "checking ssh status"
+else
+    WANTED=`echo ${WANTED} | tr a-z A-Z`
+    echo "checking ssh state = ${WANTED}"
+fi
+I=1
+until [ $I -gt "$NUMNODES" ]
+do
+  HOST=${PREFIX}${I}
+  echo -n "checking ${HOST}.."
+  nc -z ${HOST} 22 2>>/dev/null
+  if [ $? -eq 0 ]
+  then
+    echo "UP"
+    ((UP++))
+  else
+    echo "DOWN"
+    ((DOWN++))
+  fi
+  ((I++))
+done
+echo -n "ssh check status = "
+ERR=0
+case ${WANTED} in
+    "UP")
+    if [ ${UP} -ne ${NUMNODES} ]
+    then
+	ERR=1
+    fi
+    ;;
+    "DOWN")
+    if [ ${DOWN} -ne ${NUMNODES} ]
+    then
+	ERR=1
+    fi
+    ;;
+    *)
+    ;;
+esac
+if [ $ERR -eq 0 ]
+then
+    echo "OK"
+else
+    echo "ERROR !"
+fi
+alert_led off
+exit ${ERR}

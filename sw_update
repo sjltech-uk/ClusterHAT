@@ -1,0 +1,21 @@
+#!/bin/bash
+PREFIX=${CHAT_NODE_PREFIX}
+NUMNODES=${CHAT_NODES}
+SUFFIX=${CHAT_NO}
+CLUSTBIN=/mnt/CLUSTER-${SUFFIX}/bin
+PORT=1
+DELAY=2
+echo "doing software updates..."
+
+until [ $PORT -gt "$NUMNODES" ]
+do
+    HOST=${PREFIX}${PORT}
+    echo "updating ${HOST}"
+    ssh pi@${HOST} ${CLUSTBIN}/do_update
+    sleep ${DELAY}
+    ((PORT++))
+done
+echo "node updates are complete"
+echo "updating Control node..."
+${CLUSTBIN}/do_update
+echo "updates are complete"

@@ -1,0 +1,2 @@
+# scp * pi@rpi-dsrv.local:/mnt/250GB/clusterhat/controller/bin/
+rsync -avzh /home/pi/bin/* pi@rpi-dsrv.local:/mnt/250GB/clusterhat/controller/bin/

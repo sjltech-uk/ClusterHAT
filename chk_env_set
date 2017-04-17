@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "checking environment is set"
+: ${CHAT_ID1:?"Need to set CHAT_ID"}
+echo "some var = ${NOT_THERE}"

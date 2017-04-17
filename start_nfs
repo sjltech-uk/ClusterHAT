@@ -1,0 +1,10 @@
+#!/bin/bash
+echo "starting NFS services..."
+echo -n "rpcbind..."
+sudo service rpcbind start
+echo "$?"
+echo "==> sleep for 5 seconds..."
+sleep 5
+echo -n "nfs server..."
+sudo service nfs-kernel-server restart
+echo "$?"

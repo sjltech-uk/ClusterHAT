@@ -1,0 +1,19 @@
+#!/bin/bash
+NUMNODES=${CHAT_NODES}
+alert_led on
+GPID=22
+VAL=1
+PORT=1
+STATE=on
+DELAY=2
+echo "Switching on power to cluster nodes"
+until [ $PORT -gt "$NUMNODES" ]
+do
+    echo "turn ${STATE} P${PORT} ${GPID}"
+    gpio write ${GPID} ${VAL}
+    ((GPID++))
+    sleep ${DELAY}
+    ((PORT++))
+done
+echo "power on complete"
+alert_led off

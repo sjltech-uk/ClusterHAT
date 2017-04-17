@@ -1,0 +1,17 @@
+#!/bin/bash
+echo "waiting for services to come up"
+CTR=1
+if [ "$1." = "." ]
+then
+  WAIT=30
+else
+  WAIT=$1
+fi
+while [ $CTR -le $WAIT ]
+do
+  echo -n "."
+  ((CTR++))
+  sleep 1
+done
+echo
+

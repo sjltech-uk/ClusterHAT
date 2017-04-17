@@ -1,0 +1,97 @@
+#!/bin/bash
+clear
+CTRLR=clusterctl
+echo "==============================================================="
+echo "=           Cluster Controller Functions - `hostname`          ="
+echo "==============================================================="
+echo "= 1 - Check Nodes              | E - Show Environment values  ="
+echo "= 2 - Start Cluster Nodes      | I - Show IP address details  ="
+echo "= 3 - Stop Cluster Nodes       | M - Display node memory      ="
+echo "= 4 - Reboot Cluster           | N - Check node NFS mounts    ="
+echo "= 5 - Shutdown Cluster         | U - Update Software          ="
+echo "==============================================================="
+echo "---------------------------------------------------------------"
+echo "=                     This is Cluster-${CHAT_NO}                       ="
+echo "==============================================================="
+echo
+echo -n "choice ? > "
+read KEY
+case $KEY in
+	E)
+	echo "print environment variables"
+	env | grep CHAT_
+	echo "done"
+	;;
+	I)
+	ifconfig br0 | head -n4
+	;;
+	M)
+	chk_ssh UP
+	if [ $? -eq 0 ]
+	then
+	  chk_mem
+	else
+	  echo "ERROR: nodes are not started !"
+	fi
+	;;
+	N)
+	chk_ssh UP
+	if [ $? -eq 0 ]
+	then
+	  chk_node_mt
+	else
+	  echo "ERROR: nodes are not started !"
+	fi
+	;;
+	U)
+	chk_ssh UP
+	if [ $? -eq 0 ]
+	then
+	  sw_update
+	else
+	  echo "ERROR: nodes are not started !"
+	fi
+	;;
+	1)
+	chk_ssh
+	;;
+	2)
+	start_nfs
+	turn_pwr_on
+	wait_msg 40
+	chk_ssh UP
+	;;
+	3)
+	shut_down_nodes
+	chk_ssh DOWN
+	turn_pwr_off
+	;;
+	4)
+	echo "++++++++++++++++++++++++++++++++++++++++++++++++++"
+	echo "CAUTION - You are about to reboot the cluster    !"
+	echo "CTRL & C to abort, any other key to continue..."
+	echo "++++++++++++++++++++++++++++++++++++++++++++++++++"
+	read YES 
+        shut_down_nodes
+        chk_ssh DOWN
+        turn_pwr_off	
+	sudo shutdown -r 1 &
+	;;
+	5)
+	echo "++++++++++++++++++++++++++++++++++++++++++++++++++"
+	echo "WARNING - You are about to shut the cluster down !"
+        echo "CTRL & C to abort, any other key to continue..."
+	echo "++++++++++++++++++++++++++++++++++++++++++++++++++"
+	read YES 
+        shut_down_nodes
+        chk_ssh DOWN
+        turn_pwr_off	
+	sudo shutdown -Ph 1 &
+	;;
+	*)
+	echo "Invalid choice ${KEY}"
+	;;
+esac
+echo -n "any key to continue..."
+read DUM
+$CTRLR

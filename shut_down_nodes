@@ -1,0 +1,24 @@
+#!/bin/bash
+PREFIX=${CHAT_NODE_PREFIX}
+NUMNODES=${CHAT_NODES}
+I=1
+alert_led on
+echo "starting software shutdown on cluster nodes"
+until [ $I -gt "$NUMNODES" ]
+do
+  HOST=${PREFIX}${I}
+  echo "Sending shutdown to ${HOST}"
+  ssh pi@${HOST} "sudo shutdown -h now &"&
+  ((I++))
+done
+echo "waiting for software shutdown."
+C=4
+while [ ! "$C" -eq "0" ]
+do
+  C=`ifconfig |grep -c ethpi`
+  echo -n "."
+  sleep 1
+done
+echo
+echo "software shutdown complete"
+alert_led off
